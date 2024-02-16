@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+      "title": "TARgv22-GamesApi",
+      "version": "1.0.0"
+  },
+  "paths": {
+      "/games": {
+          "get": {
+              "tags": [
+                  "games"
+              ],
+              "responses": {
+                  "200": {
+                      "content": {
+                          "application/json": {
+                              "schema": {
+                                  "type": "array",
+                                  "items": {
+                                      "type": "string"
+                                  }
+                              },
+                              "examples": {
+                                  "List of games": {
+                                      "value": [
+                                          "Team Fortress 2",
+                                          "Cyberpunk 2077",
+                                          "Paladins: Champions of the Realm",
+                                          "Super Mario Bros. Wonder"
+                                      ]
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "description": "Returns a list of all games in API"
+          }
+      }
+  }
+}

@@ -1,0 +1,264 @@
+openapi: 3.0.2
+info:
+    title: TARgv22-GamesApi
+    version: 1.0.0
+paths:
+    /games:
+        get:
+            tags:
+                - games
+                - get
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                List of games:
+                                    value:
+                                        - Team Fortress 2
+                                        - Cyberpunk 2077
+                                        - 'Paladins: Champions of the Realm'
+                                        - Super Mario Bros. Wonder
+                    description: Returned all games in array to the user
+            description: Returns a list of all games in API
+        post:
+            requestBody:
+                description: A new game to be created
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/error'
+                        examples:
+                            Parameters missing:
+                                value:
+                                    error: One or all parameters are missing
+                required: true
+            tags:
+                - games
+                - new-game
+                - post
+            responses:
+                '201':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/new-game'
+                            examples:
+                                Game that is added:
+                                    value:
+                                        name: Game Name
+                                        price: 0.09
+                                        rating: 5
+                    description: New game has been created.
+                '400':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                    description: One or all parameters are missing
+            summary: Creates a game into the API (either db or array)
+            description: Creates a new game
+    '/games/{id}':
+        get:
+            tags:
+                - games
+                - details
+            parameters:
+                -
+                    name: id
+                    in: path
+                    required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                Details of a game:
+                                    value:
+                                        id: 1
+                                        name: Team Fortress 2
+                                        price: free
+                                        rating: 5
+                    description: 'Returns full details of a given game, based on user input id.'
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                Game /w+ was not found:
+                                    value:
+                                        error: Game \w+ was not found in game array.
+                    description: Game was not found in games array.
+            operationId: id
+            summary: Get full details of a given game
+            description: 'Returns full details of a given game, based on the id input by the user.'
+        delete:
+            tags:
+                - games
+                - delete
+            parameters:
+                -
+                    examples:
+                        Integer id:
+                            value: '55'
+                    name: id
+                    description: ID for game in array
+                    schema:
+                        type: integer
+                    in: path
+                    required: true
+            responses:
+                '204':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                204 response:
+                                    value:
+                                        error: No Content
+                    description: No Content
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                Game /w+ was not found:
+                                    value:
+                                        error: Game \w+ was not found
+                    description: Game not found
+            operationId: Id
+            summary: Delete a game by id
+            description: Deletes a game of the given id
+        parameters:
+            -
+                examples:
+                    Integer id:
+                        value: '55'
+                name: id
+                description: ID for game in array
+                schema:
+                    type: integer
+                in: path
+                required: true
+    /influencers:
+        get:
+            tags:
+                - Influencers
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                Example of an influencer:
+                                    value:
+                                        -
+                                            onlinename: JackSepticEye
+                                        -
+                                            onlinename: Markiplier
+                    description: Returned all Influencers in API to the requester.
+            description: Returns a list of all Influencers in API
+    '/influencers/{id}':
+        get:
+            tags:
+                - influencers
+                - details
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: string
+                            examples:
+                                Details of an influencer:
+                                    value:
+                                        id: 1
+                                        onlinename: JackSepticEye
+                                        personname: Seán William McLoughlin
+                                        isactive: 'true'
+                                        sociallink: >-
+                                            https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjV08ap9OGDAxUfhf0HHV_IAagQFnoECBkQAQ&url=https%3A%2F%2Fwww.youtube.com%2Fchannel%2FUCYzPXprvl5Y-Sf0g4vX-m6g&usg=AOvVaw1hq2HQu5dy2oL9LbCNn7Gq&opi=89978449
+                                        imagelink: >-
+                                            https://yt3.googleusercontent.com/ytc/AIf8zZTdiBUTAFRN90kHswULII31DGOAWiQlSlnarWRkbg=s176-c-k-c0x00ffffff-no-rj
+                    description: 'Returns full details of an influencer, based on given id.'
+                '404':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/error'
+                            examples:
+                                '"Influencer /w+ was not found in game array."':
+                                    value:
+                                        error: Influencer \w+ was not found in game array.
+                    description: Influencer with this id was not found
+        parameters:
+            -
+                examples:
+                    Example of an influencer:
+                        value: '1'
+                name: id
+                description: ID fvor influencer in array
+                schema:
+                    type: integer
+                in: path
+                required: true
+components:
+    schemas:
+        error:
+            title: Root Type for error
+            description: ''
+            type: object
+            properties:
+                error:
+                    type: string
+            example:
+                error: Error message.
+        new-game:
+            title: Root Type for new-game
+            description: new game object
+            required:
+                - name
+                - price
+                - rating
+            type: object
+            properties:
+                name:
+                    type: string
+                price:
+                    format: double
+                    type: number
+                rating:
+                    format: int32
+                    type: integer
+            example:
+                name: Tetris
+                price: 1.99
+                rating: 5
+        delete-game:
+            title: Root Type for delete-game
+            description: ''
+            required:
+                - id
+            type: object
+            properties:
+                id:
+                    format: int32
+                    type: integer
+            example:
+                id: 1
