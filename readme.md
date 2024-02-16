@@ -1,4 +1,4 @@
-## Developers: Jüri Vaitmaa
+## Developer: Siim Koppel
 
 ## Project Setup
 
