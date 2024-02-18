@@ -1,6 +1,6 @@
 module.exports = (sequelize,Sequelize) => {
     const Game = sequelize.define("Game", {
-        id: {
+        gameid: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -9,13 +9,13 @@ module.exports = (sequelize,Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        price: {
-            type: Sequelize.DOUBLE,
+        genre: {
+            type: Sequelize.STRING,
             allowNull: false
         },
-        rating: {
+        price: {
             type: Sequelize.INTEGER,            
-            allowNull: true
+            allowNull: false
         },
     })
     return Game
