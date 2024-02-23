@@ -8,7 +8,7 @@ exports.getAll = async (req, res) => {
         res.status(200).json(games);
     } catch (error) {
         console.error('Error retrieving games:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Total bs' });
     }
 };
 
