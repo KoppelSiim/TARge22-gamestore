@@ -8,11 +8,9 @@ const yamljs = require('yamljs');
 const swaggerDocument = yamljs.load('./docs/swagger.yaml');
 app.use(express.json());
 app.use(cors());
-
 const appRoutes = require("./routes/app_routes");
 appRoutes(app);
 
-// ... other configurations ...
 
 app.listen(port, () => {
     console.log(`API up at: http://localhost:${port}`);
