@@ -5,8 +5,7 @@
 1. Clone repository
 2. Open repo folder
 3. run command `npm i`
-4. rename .env.example to .env
-5. populate the new .env file with correct connection information
-6. run project from terminal using command `node .`
-7. open browser at the given address
-8. api is up at my address
+4. configure env
+5. run project from terminal using command `node .`
+6. open browser at the given address
+7. api is up at my address
