@@ -18,10 +18,21 @@ exports.getAllGameNames = async (req, res) =>{
         const games = await Game.findAll({attributes: ["name"]});
         res.status(200).json(games);
     } catch (error){
-        console.error('Cannot get list of game names')
+        console.error('Cannot get list of game names');
+        res.status(500).json({error:'Cannot find game name'});
     }
 };
 
+// Get a list of all game genres or throw error
+exports.getAllGameGenres = async (req, res) => {
+    try{
+        const games = await Game.findAll({attributes: ["genre"]});
+        res.status(200).json(games);
+    } catch(error){
+        console.error('Cannot find game genre');
+        res.status(500).json({error: 'Cannot find game genre'});
+    }
+};
 
 // Get base URL
 getBaseUrl = (request) => {
