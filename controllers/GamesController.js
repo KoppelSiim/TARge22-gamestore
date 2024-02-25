@@ -34,6 +34,29 @@ exports.getAllGameGenres = async (req, res) => {
     }
 };
 
+// Get the price of a game by its ID or throw an error
+exports.getGamePriceById = async (req, res) => {
+
+    // get game id from request params
+    const {gameId} = req.params;
+
+    try {
+        // find the price by gameId
+        const game = await Game.findByPk(gameId, { attributes: ["price"] });
+        // game is found
+        if (game) {
+            res.status(200).json({ price: game.price });
+        } else {
+            // not found
+            res.status(404).json({ error: 'Game with this id not found' });
+        }
+    } catch (error) {
+        console.error(`Error retrieving game price for ID ${gameId}:`, error);
+        // internal server error 500
+        res.status(500).json({ error: 'Cannot retrieve game price' });
+    }
+};
+
 // Get base URL
 getBaseUrl = (request) => {
     return (

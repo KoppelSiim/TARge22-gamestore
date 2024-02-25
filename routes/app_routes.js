@@ -11,4 +11,6 @@ module.exports = (app) => {
         .get(gamesController.getAllGameNames); // get all game names
     app.route("/gamegenres")
         .get(gamesController.getAllGameGenres); // get all game genres
+    app.route("/game/:gameId/price")
+        .get(gamesController.getGamePriceById); // get game price by ID
 };
