@@ -15,7 +15,8 @@ const sequelize = new Sequelize(
 const db = {}
 db.Sequelize = Sequelize
 db.sequelize = sequelize
-db.games = require("./models/Game.model")(sequelize,Sequelize)
+db.games = require("./models/Game.model")(sequelize,Sequelize); // game model
+db.users = require("./models/User.model")(sequelize, Sequelize); // user model
 
 
 async function Sync() {
