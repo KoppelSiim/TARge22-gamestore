@@ -12,6 +12,15 @@ exports.getAll = async (req, res) => {
         res.status(500).json({ error: 'Cannot find gameid' });
     }
 };
+// Get a list of all game names or throw error
+exports.getAllGameNames = async (req, res) =>{
+    try{
+        const games = await Game.findAll({attributes: ["name"]});
+        res.status(200).json(games);
+    } catch (error){
+        console.error('Cannot get list of game names')
+    }
+};
 
 // Get base URL
 getBaseUrl = (request) => {
