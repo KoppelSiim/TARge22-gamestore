@@ -6,7 +6,7 @@ module.exports = (app) => {
         res.send("Welcome to my games tore!");
     });
     app.route("/games")
-        .get(gamesController.getAll);  // get all games as list
-    /*app.route("/games/:id")     
-        .get(gamesController.getById)    // get a game by id*/
+        .get(gamesController.getAll);  // get all games id-s as list
+    app.route("/gamenames")
+        .get(gamesController.getAllGameNames); // get all game names
 };
