@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const Game = sequelize.define("Games", {
-        gameid: {
+        gameId: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -20,6 +20,10 @@ module.exports = (sequelize, Sequelize) => {
     }, {
         tableName: 'Games' 
     });
+
+    Game.associate = (models) => {
+        Game.belongsTo(models.User, { foreignKey: 'userId' });
+    };
 
     return Game;
 };
