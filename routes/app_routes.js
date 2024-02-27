@@ -1,4 +1,5 @@
 const gamesController = require('../controllers/GamesController.js');
+const usersController = require('../controllers/UsersController.js');
 
 module.exports = (app) => {
     // Welcome message to my gamestore
