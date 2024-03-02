@@ -13,6 +13,26 @@ exports.getAll = async (req, res) => {
     }
 };
 
+exports.createNewUser = async (req, res) => {
+    console.log(req.body)
+    let user
+    try {
+        user = await User.create(req.body)
+    } catch (error) {
+        if (error instanceof db.Sequelize.ValidationError) {
+            console.log(error)
+            res.status(400).send({"error":"Invalid input"})
+        } else {
+            console.log("UsersCreate ", error)
+            res.status(500).send({"error":"server error, try again later"})
+        }
+        return
+    }
+    res
+        .status(201)
+        .location(`${getBaseUrl(req)}/users/${user.id}`)
+        .json(user)
+}
 // Get base URL
 getBaseUrl = (request) => {
     return (

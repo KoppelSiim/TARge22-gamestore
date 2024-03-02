@@ -16,5 +16,6 @@ module.exports = (app) => {
     app.route("/game/:gameId/price")
         .get(gamesController.getGamePriceById); // get game price by ID
     app.route("/users")
-        .get(usersController.getAll);
+        .get(usersController.getAll)
+        .post(usersController.createNewUser); 
 };
