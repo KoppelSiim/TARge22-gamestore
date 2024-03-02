@@ -57,6 +57,26 @@ exports.getGamePriceById = async (req, res) => {
     }
 };
 
+exports.createNew = async (req, res) => {
+    console.log(req.body)
+    let game
+    try {
+        game = await Game.create(req.body)
+    } catch (error) {
+        if (error instanceof db.Sequelize.ValidationError) {
+            console.log(error)
+            res.status(400).send({"error":"Invalid input"})
+        } else {
+            console.log("GamesCreate ", error)
+            res.status(500).send({"error":"server error, try again later"})
+        }
+        return
+    }
+    res
+        .status(201)
+        .location(`${getBaseUrl(req)}/games/${game.id}`)
+        .json(game)
+}
 // Get base URL
 getBaseUrl = (request) => {
     return (

@@ -7,7 +7,8 @@ module.exports = (app) => {
         res.send("Welcome to my games tore!");
     });
     app.route("/games")
-        .get(gamesController.getAll);  // get all games id-s as list
+        .get(gamesController.getAll)  // get all games id-s as list
+        .post(gamesController.createNew); // add a new game
     app.route("/gamenames")
         .get(gamesController.getAllGameNames); // get all game names
     app.route("/gamegenres")
