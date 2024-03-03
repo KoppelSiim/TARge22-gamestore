@@ -5,7 +5,7 @@ const Game = db.games;
 // Get list of gameId-s
 exports.getAll = async (req, res) => {
     try {
-        const games = await Game.findAll({ attributes: ["gameid"] });
+        const games = await Game.findAll({ attributes: ["gameId"] });
         res.status(200).json(games);
     } catch (error) {
         console.error('Error retrieving games:', error);
