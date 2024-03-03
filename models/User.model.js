@@ -34,5 +34,9 @@ module.exports = (sequelize, Sequelize) => {
         User.hasMany(models.Game, { foreignKey: 'userId' });
     };
 
+    User.associate = (models) => {
+        User.hasMany(models.Purchase, { foreignKey: 'userId' });
+    };
+    
     return User;
 };

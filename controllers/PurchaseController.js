@@ -1,6 +1,6 @@
 const { db } = require('../db');
 db.Sequelize.sync();
-
+const { Purchase, User, Game } = require('../db');
 
 
 

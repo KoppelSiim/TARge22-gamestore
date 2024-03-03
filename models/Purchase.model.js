@@ -11,5 +11,10 @@ module.exports = (sequelize, Sequelize) => {
         },
     });
 
+    Purchase.associate = (models) => {
+        Purchase.belongsTo(models.User, { foreignKey: 'userId' });
+        Purchase.belongsTo(models.Game, { foreignKey: 'gameId' });
+    };
+
     return Purchase;
 };
