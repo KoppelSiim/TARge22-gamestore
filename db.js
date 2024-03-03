@@ -17,6 +17,7 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 db.games = require("./models/Game.model")(sequelize,Sequelize); // game model
 db.users = require("./models/User.model")(sequelize, Sequelize); // user model
+db.purchases = require("./models/Purchase.model")(sequelize, Sequelize); // purchase model
 
 
 async function Sync() {
