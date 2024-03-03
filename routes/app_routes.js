@@ -1,5 +1,6 @@
 const gamesController = require('../controllers/GamesController.js');
 const usersController = require('../controllers/UsersController.js');
+const purchaseController = require('../controllers/PurchaseController.js');
 
 module.exports = (app) => {
     // Welcome message to my gamestore
@@ -18,4 +19,5 @@ module.exports = (app) => {
     app.route("/users")
         .get(usersController.getAll)
         .post(usersController.createNewUser); 
+    app.route("/purchase/game/:gameId").post(purchaseController.buyGame);
 };
