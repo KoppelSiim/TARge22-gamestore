@@ -7,6 +7,7 @@ module.exports = (app) => {
     app.get("/", (req, res) => {
         res.send("Welcome to my games tore!");
     });
+    // // Games routes
     app.route("/games")
         .get(gamesController.getAll)  // get all games id-s as list
         .post(gamesController.createNew); // add a new game
@@ -16,8 +17,11 @@ module.exports = (app) => {
         .get(gamesController.getAllGameGenres); // get all game genres
     app.route("/game/:gameId/price")
         .get(gamesController.getGamePriceById); // get game price by ID
+    // Users routes
     app.route("/users")
         .get(usersController.getAll)
         .post(usersController.createNewUser); 
-    app.route("/purchase/game/:gameId").post(purchaseController.buyGame);
+    // Purchase route
+    app.route("/purchase/game")
+        .post(purchaseController.buyGame); // purchase a game
 };
