@@ -30,11 +30,12 @@ module.exports = (sequelize, Sequelize) => {
         tableName: 'Users' 
     });
     
+    //User has many Game instances, and the association is established using the hasMany method.
+    //The foreignKey: 'userId' option indicates that the userId field in the User model will be used as the foreign key in the Game model
+    //to establish the relationship.
+    
     User.associate = (models) => {
         User.hasMany(models.Game, { foreignKey: 'userId' });
-    };
-
-    User.associate = (models) => {
         User.hasMany(models.Purchase, { foreignKey: 'userId' });
     };
     

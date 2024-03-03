@@ -2,10 +2,6 @@ module.exports = (sequelize, Sequelize) => {
     const Game = sequelize.define("Games", {
         userId: {
             type: Sequelize.INTEGER,
-            references: {
-                model: 'Users', 
-                key: 'userId'  
-            }
         },
         gameId: {
             type: Sequelize.INTEGER,
@@ -27,14 +23,12 @@ module.exports = (sequelize, Sequelize) => {
     }, {
         tableName: 'Games' 
     });
-
+    
+    // Game belongs to a user, and a game can have multiple purchases.
     Game.associate = (models) => {
         Game.belongsTo(models.User, { foreignKey: 'userId' });
-    };
-
-    Game.associate = (models) => {
         Game.hasMany(models.Purchase, { foreignKey: 'gameId' });
     };
-
+    
     return Game;
 };
