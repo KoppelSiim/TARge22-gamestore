@@ -87,7 +87,7 @@ exports.updateGameById = async (req, res) => {
         const game = await Game.findByPk(gameId);
 
         if (!game) {
-            return res.status(404).json({ error: 'Game not found' });
+            return res.status(404).json({ error: 'Game with this id not found' });
         }
 
         // Update the game attributes
