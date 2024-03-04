@@ -77,6 +77,32 @@ exports.createNew = async (req, res) => {
         .location(`${getBaseUrl(req)}/games/${game.id}`)
         .json(game)
 }
+
+// Update an existing game by its ID
+exports.updateGameById = async (req, res) => {
+    const { gameId } = req.params;
+
+    try {
+        // Find the game by ID
+        const game = await Game.findByPk(gameId);
+
+        if (!game) {
+            return res.status(404).json({ error: 'Game not found' });
+        }
+
+        // Update the game attributes
+        await game.update(req.body);
+
+        // Fetch the updated game to send in the response
+        const updatedGame = await Game.findByPk(gameId);
+
+        res.status(200).json(updatedGame);
+    } catch (error) {
+        console.error(`Error updating game with ID ${gameId}:`, error);
+        res.status(500).json({ error: 'Error updating game' });
+    }
+};
+
 // Get base URL
 getBaseUrl = (request) => {
     return (
