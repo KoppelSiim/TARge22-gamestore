@@ -103,6 +103,24 @@ exports.updateGameById = async (req, res) => {
     }
 };
 
+exports.deleteGameById = async (req, res) => {
+    const { gameId } = req.params;
+
+    try {
+        const game = await Game.findByPk(gameId);
+
+        if (!game) {
+            return res.status(404).json({ error: 'Game not found' });
+        }
+
+        await game.destroy();
+        return res.status(204).send(); 
+    } catch (error) {
+        console.error(`Error deleting game with ID ${gameId}:`, error);
+        res.status(500).json({ error: 'Error deleting game' });
+    }
+};
+
 // Get base URL
 getBaseUrl = (request) => {
     return (

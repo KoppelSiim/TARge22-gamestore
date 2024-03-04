@@ -19,6 +19,8 @@ module.exports = (app) => {
         .get(gamesController.getGamePriceById); // get game price by ID
     app.route("/games/:gameId")
         .put(gamesController.updateGameById);
+    app.route("/games/:gameId")
+        .delete(gamesController.deleteGameById);
     // Users routes
     app.route("/users")
         .get(usersController.getAll)
