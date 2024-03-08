@@ -120,11 +120,3 @@ exports.deleteGameById = async (req, res) => {
         res.status(500).json({ error: 'Error deleting game' });
     }
 };
-
-// Get base URL
-getBaseUrl = (request) => {
-    return (
-        (request.connection && request.connection.encrypted ? 'https' : 'http') +
-        `://${request.headers.host}`
-    );
-};

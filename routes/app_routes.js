@@ -25,6 +25,8 @@ module.exports = (app) => {
     app.route("/users")
         .get(usersController.getAll)
         .post(usersController.createNewUser); 
+    app.route("/users/:userId")
+        .put(usersController.updateUserById);
     // Purchase route
     app.route("/purchase/game")
         .post(purchaseController.buyGame); // purchase a game
