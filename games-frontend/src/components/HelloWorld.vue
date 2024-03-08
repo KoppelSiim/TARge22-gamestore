@@ -9,6 +9,9 @@ defineProps<{
     <h1 class="green">{{ msg }}</h1>
     <h3>
       Hello front end with vue and vite
+      Hello front end with vue and vite
+      Hello front end with vue and vite
+      Hello front end with vue and vite
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
