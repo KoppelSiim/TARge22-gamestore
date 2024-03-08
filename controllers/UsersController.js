@@ -33,6 +33,47 @@ exports.createNewUser = async (req, res) => {
         .location(`${getBaseUrl(req)}/users/${user.id}`)
         .json(user)
 }
+
+// Update user by id
+exports.updateUserById = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        
+        const user = await User.findByPk(userId);
+
+        if (!user) {
+            return res.status(404).json({ error: 'User with this id not found' });
+        }
+
+       
+        await user.update(req.body);
+        const updatedUser = await Game.findByPk(userId);
+
+        res.status(200).json(updatedUser);
+    } catch (error) {
+        console.error(`Error updating user with ID ${userId}:`, error);
+        res.status(500).json({ error: 'Error updating user' });
+    }
+};
+
+exports.deleteUserById = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const user = await User.findByPk(userId );
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        await user.destroy();
+        return res.status(204).send(); 
+    } catch (error) {
+        console.error(`Error deleting user with ID ${userId}:`, error);
+        res.status(500).json({ error: 'Error deleting user' });
+    }
+};
 // Get base URL
 getBaseUrl = (request) => {
     return (
