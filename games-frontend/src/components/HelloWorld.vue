@@ -4,6 +4,16 @@ defineProps<{
 }>()
 </script>
 
+<script lang="ts">
+import { ref, defineProps } from 'vue';
+// Define props
+const props = defineProps<{
+  msg: string
+}>();
+// Define a message and add content
+const message = ref('My games');
+</script>
+
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
@@ -14,6 +24,7 @@ defineProps<{
     <h1>
       Welcome to my game store
     </h1>
+    <p>{{ message }}</p>
   </div>
 </template>
 
