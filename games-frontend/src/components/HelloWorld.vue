@@ -11,7 +11,7 @@
   <div class="games">
     <h1>Game Names</h1>
     <ul>
-      <li v-for="gameName in gameNames" :key="gameName">{{ gameName.name }}</li>
+      <li v-for="gameName in gameNames">{{ gameName.name}}</li>
     </ul>
   </div>
 </template>
@@ -32,6 +32,7 @@ onMounted(async () => {
     const response = await fetch('http://localhost:8080/gamenames');
     const data = await response.json();
     gameNames.value = data;
+    console.log(data);
   } catch (error) {
     console.error('Error fetching game names:', error);
   }
