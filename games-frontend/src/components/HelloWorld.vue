@@ -6,13 +6,12 @@
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
     <h1>Welcome to my game store</h1>
-    <p>{{ message }}</p>
   </div>
   
   <div class="games">
     <h1>Game Names</h1>
     <ul>
-      <li v-for="gameName in gameNames" :key="gameName">{{ gameName }}</li>
+      <li v-for="gameName in gameNames" :key="gameName">{{ gameName.name }}</li>
     </ul>
   </div>
 </template>
@@ -24,9 +23,6 @@ import { ref, defineProps, onMounted } from 'vue';
 const props = defineProps<{
   msg: string
 }>();
-
-// Define a message and add content
-const message = ref('My games');
 
 // Define gameNames to fetch
 const gameNames = ref<string[]>([]);
@@ -57,6 +53,9 @@ h3 {
 .greetings h1,
 .greetings h3 {
   text-align: center;
+}
+.games ul{
+  list-style: none;
 }
 
 @media (min-width: 1024px) {
