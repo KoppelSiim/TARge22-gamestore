@@ -1,19 +1,3 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
-</script>
-
-<script lang="ts">
-import { ref, defineProps } from 'vue';
-// Define props
-const props = defineProps<{
-  msg: string
-}>();
-// Define a message and add content
-const message = ref('My games');
-</script>
-
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
@@ -21,19 +5,42 @@ const message = ref('My games');
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
     </h3>
-    <h1>
-      Welcome to my game store
-    </h1>
+    <h1>Welcome to my game store</h1>
     <p>{{ message }}</p>
   </div>
   
   <div class="games">
     <h1>Game Names</h1>
     <ul>
-      <li>Game</li>
+      <li v-for="gameName in gameNames" :key="gameName">{{ gameName }}</li>
     </ul>
   </div>
 </template>
+
+<script setup lang="ts">
+import { ref, defineProps, onMounted } from 'vue';
+
+// Define props
+const props = defineProps<{
+  msg: string
+}>();
+
+// Define a message and add content
+const message = ref('My games');
+
+// Define gameNames to fetch
+const gameNames = ref<string[]>([]);
+
+onMounted(async () => {
+  try {
+    const response = await fetch('http://localhost:8080/gamenames');
+    const data = await response.json();
+    gameNames.value = data;
+  } catch (error) {
+    console.error('Error fetching game names:', error);
+  }
+});
+</script>
 
 <style scoped>
 h1 {
