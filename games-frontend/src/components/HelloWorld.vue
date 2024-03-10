@@ -26,6 +26,13 @@ const message = ref('My games');
     </h1>
     <p>{{ message }}</p>
   </div>
+  
+  <div class="games">
+    <h1>Game Names</h1>
+    <ul>
+      <li>Game</li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>
