@@ -104,7 +104,7 @@ h3 {
   <div class="games">
     <h1>Game Names</h1>
     <ol>
-      <li v-for="gameName in gameNames">{{ gameName.name }}</li>
+      <li v-for="game in gameNames">{{ game.name }}</li>
     </ol>
     <!-- Use v-model to bind the data -->
     <label for="gname">Game name</label>
