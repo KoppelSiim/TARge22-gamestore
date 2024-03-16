@@ -40,6 +40,14 @@ h3 {
 .games ul{
   list-style: none;
 }
+.games #add{
+  color:rgb(22, 24, 165);
+  margin-top: 10px;
+  margin-left: 25px;
+  padding: 5px;
+  font-size: medium;
+  border-radius: 5px;
+}
 
 @media (min-width: 1024px) {
   .greetings h1,
@@ -64,5 +72,6 @@ h3 {
     <ol>
       <li v-for="gameName in gameNames">{{ gameName.name}}</li>
     </ol>
+    <button id="add">Add game</button>
   </div>
 </template>
