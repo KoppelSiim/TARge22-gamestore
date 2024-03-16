@@ -82,6 +82,12 @@ h3 {
   font-size: medium;
   border-radius: 5px;
 }
+.add-game{
+  margin-top: 20px;
+}
+.add-game label {
+  margin-right: 20px; 
+}
 
 @media (min-width: 1024px) {
   .greetings h1,
@@ -107,12 +113,18 @@ h3 {
       <li v-for="game in gameNames">{{ game.name }}</li>
     </ol>
     <!-- Use v-model to bind the data -->
-    <label for="gname">Game name</label>
-    <input type="text" id="gname" name="gname" v-model="gameName"><br><br>
-    <label for="ggenre">Game genre</label>
-    <input type="text" id="ggenre" name="ggenre" v-model="gameGenre"><br><br>
-    <label for="gprice">Game price</label>
-    <input type="number" step="0.1" id="gprice" name="gprice" v-model="gamePrice"><br><br>
+    <div class="add-game">
+      <label for="gname">Game name</label>
+      <input type="text" id="gname" name="gname" v-model="gameName">
+    </div>
+    <div class="add-game">
+      <label for="ggenre">Game genre</label>
+      <input type="text" id="ggenre" name="ggenre" v-model="gameGenre">
+    </div>
+    <div class="add-game">
+      <label for="gprice">Game price</label>
+      <input type="number" step="0.1" id="gprice" name="gprice" v-model="gamePrice">
+    </div>
     <button id="add" @click="addGame">Add game</button>
   </div>
 </template>
