@@ -10,6 +10,21 @@ const props = defineProps<{
 const gameNames = ref<{ name: string }[]>([]);
 
 onMounted(async () => {
+  await fetchGameNames();
+});
+
+async function fetchGameNames() {
+  try {
+    const response = await fetch('http://localhost:8080/gamenames');
+    const data = await response.json();
+    gameNames.value = data;
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching game names:', error);
+  }
+}
+
+onMounted(async () => {
   try {
     const response = await fetch('http://localhost:8080/gamenames');
     const data = await response.json();
@@ -72,6 +87,6 @@ h3 {
     <ol>
       <li v-for="gameName in gameNames">{{ gameName.name}}</li>
     </ol>
-    <button id="add">Add game</button>
+    <button id="add"  @click="fetchGameNames">Fetch</button>
   </div>
 </template>
