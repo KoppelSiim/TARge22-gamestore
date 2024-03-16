@@ -24,16 +24,6 @@ async function fetchGameNames() {
   }
 }
 
-onMounted(async () => {
-  try {
-    const response = await fetch('http://localhost:8080/gamenames');
-    const data = await response.json();
-    gameNames.value = data;
-    console.log(data);
-  } catch (error) {
-    console.error('Error fetching game names:', error);
-  }
-});
 </script>
 
 <style scoped>
