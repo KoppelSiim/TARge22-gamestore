@@ -10,9 +10,9 @@
   
   <div class="games">
     <h1>Game Names</h1>
-    <ul>
+    <ol>
       <li v-for="gameName in gameNames">{{ gameName.name}}</li>
-    </ul>
+    </ol>
   </div>
 </template>
 
