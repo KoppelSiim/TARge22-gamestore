@@ -23,7 +23,29 @@ async function fetchGameNames() {
     console.error('Error fetching game names:', error);
   }
 }
+// Add a game on click
+async function addGame() {
+  try {
+    const response = await fetch('http://localhost:8080/games', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      
+      // Test content
+      body: JSON.stringify({name: 'Skyrim123', genre: 'RPG', price:'22.22'}),
+    });
 
+    // Update gamelist on success
+    if (response.ok) {
+      await fetchGameNames();
+    } else {
+      console.error('Failed to add game:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error adding game:', error);
+  }
+}
 </script>
 
 <style scoped>
@@ -77,6 +99,6 @@ h3 {
     <ol>
       <li v-for="gameName in gameNames">{{ gameName.name}}</li>
     </ol>
-    <button id="add"  @click="fetchGameNames">Fetch</button>
+    <button id="add"  @click="addGame">Add game</button>
   </div>
 </template>
