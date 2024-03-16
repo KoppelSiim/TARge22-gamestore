@@ -9,6 +9,11 @@ const props = defineProps<{
 // Define gameNames to fetch and specify the type of gameNames
 const gameNames = ref<{ name: string }[]>([]);
 
+// Define reactive variables for game name, genre, and price
+const gameName = ref('');
+const gameGenre = ref('');
+const gamePrice = ref('');
+
 onMounted(async () => {
   await fetchGameNames();
 });
@@ -31,9 +36,11 @@ async function addGame() {
       headers: {
         'Content-Type': 'application/json',
       },
-      
-      // Test content
-      body: JSON.stringify({name: 'Skyrim123', genre: 'RPG', price:'22.22'}),
+      body: JSON.stringify({
+        name: gameName.value,
+        genre: gameGenre.value,
+        price: gamePrice.value
+      }),
     });
 
     // Update gamelist on success
@@ -64,11 +71,11 @@ h3 {
 .greetings h3 {
   text-align: center;
 }
-.games ul{
+.games ul {
   list-style: none;
 }
-.games #add{
-  color:rgb(22, 24, 165);
+.games #add {
+  color: rgb(22, 24, 165);
   margin-top: 10px;
   margin-left: 25px;
   padding: 5px;
@@ -93,12 +100,19 @@ h3 {
     </h3>
     <h1>Welcome to my game store</h1>
   </div>
-  
+
   <div class="games">
     <h1>Game Names</h1>
     <ol>
-      <li v-for="gameName in gameNames">{{ gameName.name}}</li>
+      <li v-for="gameName in gameNames">{{ gameName.name }}</li>
     </ol>
-    <button id="add"  @click="addGame">Add game</button>
+    <!-- Use v-model to bind the data -->
+    <label for="gname">Game name</label>
+    <input type="text" id="gname" name="gname" v-model="gameName"><br><br>
+    <label for="ggenre">Game genre</label>
+    <input type="text" id="ggenre" name="ggenre" v-model="gameGenre"><br><br>
+    <label for="gprice">Game price</label>
+    <input type="number" step="0.1" id="gprice" name="gprice" v-model="gamePrice"><br><br>
+    <button id="add" @click="addGame">Add game</button>
   </div>
 </template>
