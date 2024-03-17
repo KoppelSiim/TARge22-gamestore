@@ -42,7 +42,7 @@ async function fetchGameGenres() {
 }
 // Add a game on click
 async function addGame() {
-  
+
    if (!gameName.value || !gameGenre.value || !gamePrice.value) {
     alert('Please fill in all fields.');
     return; 
@@ -115,6 +115,9 @@ h3 {
 .game-item{
   margin-bottom:5px;
 }
+.input-field {
+  width: 200px;
+}
 
 @media (min-width: 1024px) {
   .greetings h1,
@@ -144,15 +147,15 @@ h3 {
     <!-- Use v-model to bind the data -->
     <div class="add-game">
       <label for="gname">Game name</label>
-      <input type="text" id="gname" name="gname" v-model="gameName">
+      <input class="input-field" type="text" id="gname" name="gname" v-model="gameName">
     </div>
     <div class="add-game">
       <label for="ggenre">Game genre</label>
-      <input type="text" id="ggenre" name="ggenre" v-model="gameGenre">
+      <input class="input-field" type="text" id="ggenre" name="ggenre" v-model="gameGenre">
     </div>
     <div class="add-game">
       <label for="gprice">Game price</label>
-      <input type="number" id="gprice" name="gprice" v-model="gamePrice">
+      <input class="input-field" type="number" id="gprice" name="gprice" v-model="gamePrice">
     </div>
     <button id="add" @click="addGame">Add game</button>
   </div>
