@@ -101,6 +101,10 @@ h3 {
   margin-right: 20px; 
 }
 
+.game-item{
+  margin-bottom:5px;
+}
+
 @media (min-width: 1024px) {
   .greetings h1,
   .greetings h3 {
@@ -120,12 +124,12 @@ h3 {
   </div>
 
   <div class="games">
-    <h1>Game Names</h1>
-    <ul>
-    <li v-for="(game, index) in gameNames" :key="index">
-      {{ game.name }} - {{ gameGenres[index].genre }}
-    </li>
-    </ul>
+    <h1>Games</h1>
+    <ol>
+      <li v-for="(game, index) in gameNames" :key="index" class="game-item">
+        {{ game.name }} &nbsp;&nbsp; {{ gameGenres[index].genre }}
+      </li>
+    </ol>
     <!-- Use v-model to bind the data -->
     <div class="add-game">
       <label for="gname">Game name</label>
