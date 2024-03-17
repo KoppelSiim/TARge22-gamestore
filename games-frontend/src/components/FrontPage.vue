@@ -146,7 +146,7 @@ h3 {
     </div>
     <div class="add-game">
       <label for="gprice">Game price</label>
-      <input type="number" step="0.1" id="gprice" name="gprice" v-model="gamePrice">
+      <input type="number" id="gprice" name="gprice" v-model="gamePrice">
     </div>
     <button id="add" @click="addGame">Add game</button>
   </div>
