@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, defineProps, onMounted } from 'vue';
-
 // Define props
 const props = defineProps<{
   msg: string
@@ -9,6 +8,8 @@ const props = defineProps<{
 // Define gameNames to fetch and specify the type of gameNames
 const gameNames = ref<{ name: string }[]>([]);
 
+const gameGenres = ref<{ genre: string }[]>([]);
+
 // Define reactive variables for game name, genre, and price
 const gameName = ref('');
 const gameGenre = ref('');
@@ -16,6 +17,7 @@ const gamePrice = ref('');
 
 onMounted(async () => {
   await fetchGameNames();
+  await fetchGameGenres();
 });
 
 async function fetchGameNames() {
@@ -26,6 +28,16 @@ async function fetchGameNames() {
     console.log(data);
   } catch (error) {
     console.error('Error fetching game names:', error);
+  }
+}
+async function fetchGameGenres() {
+  try {
+    const response = await fetch('http://localhost:8080/gamegenres');
+    const data = await response.json();
+    gameGenres.value = data;
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching game genres:', error);
   }
 }
 // Add a game on click
@@ -109,9 +121,11 @@ h3 {
 
   <div class="games">
     <h1>Game Names</h1>
-    <ol>
-      <li v-for="game in gameNames">{{ game.name }}</li>
-    </ol>
+    <ul>
+    <li v-for="(game, index) in gameNames" :key="index">
+      {{ game.name }} - {{ gameGenres[index].genre }}
+    </li>
+    </ul>
     <!-- Use v-model to bind the data -->
     <div class="add-game">
       <label for="gname">Game name</label>
