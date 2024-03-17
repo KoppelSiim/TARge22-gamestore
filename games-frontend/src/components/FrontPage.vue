@@ -42,6 +42,12 @@ async function fetchGameGenres() {
 }
 // Add a game on click
 async function addGame() {
+  
+   if (!gameName.value || !gameGenre.value || !gamePrice.value) {
+    alert('Please fill in all fields.');
+    return; 
+  }
+
   try {
     const response = await fetch('http://localhost:8080/games', {
       method: 'POST',
