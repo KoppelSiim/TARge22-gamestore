@@ -94,6 +94,11 @@ h3 {
   font-size: medium;
   border-radius: 5px;
 }
+
+.games #add:hover{
+  color:rgb(118, 40, 190);
+}
+
 .add-game{
   margin-top: 20px;
 }
